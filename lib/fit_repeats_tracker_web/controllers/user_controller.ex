@@ -1,6 +1,11 @@
 defmodule FitRepeatsTrackerWeb.UserController do
   use FitRepeatsTrackerWeb, :controller
 
+  plug Guardian.Plug.Pipeline, module: FitRepeatsTrackerWeb.Guardian,
+                               error_handler: FitRepeatsTracker.Accounts.AuthErrorHandler
+  plug Guardian.Plug.VerifyHeader, key: :authentication
+  plug Guardian.Plug.EnsureAuthenticated, key: :authentication
+
   alias FitRepeatsTracker.Accounts
   alias FitRepeatsTracker.Accounts.User
 

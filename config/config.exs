@@ -7,7 +7,10 @@ use Mix.Config
 
 # General application configuration
 config :fit_repeats_tracker,
-  ecto_repos: [FitRepeatsTracker.Repo]
+  ecto_repos: [FitRepeatsTracker.Repo],
+  error_handler: FitRepeatsTracker.Accounts.AuthErrorHandler
+
+
 
 # Configures the endpoint
 config :fit_repeats_tracker, FitRepeatsTrackerWeb.Endpoint,
