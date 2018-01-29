@@ -7,5 +7,10 @@ defmodule FitRepeatsTrackerWeb.Router do
 
   scope "/api", FitRepeatsTrackerWeb do
     pipe_through :api
+
+
+    get "/users", UserController, :index
+    post "/users", UserController, :create
+    get "/users/:id", UserController, :show
   end
 end

@@ -40,8 +40,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :fit_repeats_tracker, FitRepeatsTracker.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("POSTGRES_USER"),
-  password: System.get_env("POSTGRES_PASSWORD"),
-  hostname: System.get_env("POSTGRES_HOSTNAME"),
-  database: System.get_env("POSTGRES_DB"),
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "postgres",
+  hostname: System.get_env("POSTGRES_HOSTNAME") || "localhost",
+  database: System.get_env("POSTGRES_DB") || "fit_repeats_tracker_db",
   pool_size: 10
