@@ -43,5 +43,5 @@ config :fit_repeats_tracker, FitRepeatsTracker.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "fit_repeats_tracker_dev",
+  database: "postgres",
   pool_size: 10
