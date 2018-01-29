@@ -42,6 +42,6 @@ config :fit_repeats_tracker, FitRepeatsTracker.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "fit_repeats_tracker_dev",
   hostname: "localhost",
+  database: "fit_repeats_tracker_dev",
   pool_size: 10
