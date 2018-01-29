@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :fit_repeats_tracker, FitRepeatsTracker.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("POSTGRES_USER"),
-  password: System.get_env("POSTGRES_PASSWORD"),
-  hostname: System.get_env("POSTGRES_HOSTNAME"),
-  database: System.get_env("POSTGRES_DB"),
+  username: "postgres",
+  password: "postgres",
+  database: "fit_repeats_tracker_test",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
