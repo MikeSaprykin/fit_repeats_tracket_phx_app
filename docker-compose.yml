@@ -1,24 +1,22 @@
 version: '3'
 services:
-#  web:
-#    build: .
-#    ports:
-#      - "4000:4000"
-#    env_file:
-#      - phx.env
-#    volumes:
-#      - .:/app
-#    depends_on:
-#      - db
-  db:
-    image: postgres:9.3.17
+  web:
+    build: .
     ports:
-          - "5432:5432"
+      - "4000:4000"
+    env_file:
+      - phx.env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
     volumes:
        - db_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_USER=phoenix
-      - POSTGRES_DB=phx_app
+    env_file:
+      - psql.env
 volumes:
   db_data:
