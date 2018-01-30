@@ -1,5 +1,7 @@
 # FitRepeatsTracker
 
+[![CircleCI](https://circleci.com/gh/MikeSaprykin/fit_repeats_tracket_phx_app/tree/master.svg?style=svg)](https://circleci.com/gh/MikeSaprykin/fit_repeats_tracket_phx_app/tree/master)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
