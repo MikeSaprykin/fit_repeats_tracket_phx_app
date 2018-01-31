@@ -5,12 +5,14 @@ defmodule FitRepeatsTrackerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug Guardian.Plug.VerifyHeader, key: :authentication
+    plug Guardian.Plug.EnsureAuthenticated, key: :authentication
+  end
+
   scope "/api", FitRepeatsTrackerWeb do
     pipe_through :api
 
-
-    get "/users", UserController, :index
-    post "/users", UserController, :create
-    get "/users/:id", UserController, :show
+    resources "/users", UserController
   end
 end

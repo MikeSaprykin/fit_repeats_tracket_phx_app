@@ -7,10 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :fit_repeats_tracker,
-  ecto_repos: [FitRepeatsTracker.Repo],
-  error_handler: FitRepeatsTracker.Accounts.AuthErrorHandler
-
-
+  ecto_repos: [FitRepeatsTracker.Repo]
 
 # Configures the endpoint
 config :fit_repeats_tracker, FitRepeatsTrackerWeb.Endpoint,
@@ -19,6 +16,11 @@ config :fit_repeats_tracker, FitRepeatsTrackerWeb.Endpoint,
   render_errors: [view: FitRepeatsTrackerWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: FitRepeatsTracker.PubSub,
            adapter: Phoenix.PubSub.PG2]
+
+config :fit_repeats_tracker, FitRepeatsTracker.Accounts.Guardian,
+       issuer: "fit_repeats_tracker",
+       secret_key: "EMMT5cZNFM97v4PkgC+1t+i5udH2imyvZnWyROwA3RiZkfpkQVG87JcgCEkSSc85",
+       error_handler: FitRepeatsTracker.Accounts.AuthErrorHandler
 
 # Configures Elixir's Logger
 config :logger, :console,
