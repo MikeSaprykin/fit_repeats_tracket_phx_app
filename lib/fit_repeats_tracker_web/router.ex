@@ -14,5 +14,7 @@ defmodule FitRepeatsTrackerWeb.Router do
     pipe_through :api
 
     resources "/users", UserController
+
+    get "/bands", BandsController, :index
   end
 end
