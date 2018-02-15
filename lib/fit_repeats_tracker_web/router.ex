@@ -16,5 +16,7 @@ defmodule FitRepeatsTrackerWeb.Router do
     resources "/users", UserController
 
     get "/bands", BandsController, :index
+    post "/bands", BandsController, :create
+    get "/bands/:id", BandsController, :show
   end
 end

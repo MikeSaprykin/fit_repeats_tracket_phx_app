@@ -4,6 +4,7 @@ defmodule FitRepeatsTrackers.Bands do
 
   alias FitRepeatsTracker.Repo
   alias FitRepeatsTracker.Bands.Band
+  alias FitRepeatsTracker.Accounts.User
 
   def list_bands do
     Repo.all(Band)
@@ -11,11 +12,12 @@ defmodule FitRepeatsTrackers.Bands do
 
   def get_band!(id), do: Repo.get!(Band, id)
 
-  def create_band(%{"band" => band, "user" => user}) do
-    user
-    |> Repo.build_assoc(:bands)
+  def create_band(%{"band" => band, "id" => user_id}) do
+    User
+    |> Repo.get(user_id)
+    |> Ecto.build_assoc(:created_bands)
     |> Band.changeset(band)
-    |> Repo.insert()
+    |> Repo.insert
   end
 
   def delete_band(%Band{} = band) do
@@ -28,8 +30,12 @@ defmodule FitRepeatsTrackers.Bands do
     |> Repo.update()
   end
 
-  def add_band_member(%{"band" => band, "user" => user}) do
-
+  def add_band_member(%{"band_id" => band_id, "id" => id}) do
+    band_changeset = Repo.get(Band, band_id)
+                     |> Ecto.Changeset.change()
+    user = Repo.get(User, id)
+    band_with_user = Ecto.Changeset.put_assoc(band_changeset, :users, [user])
+    Repo.update(band_with_user)
   end
 
 end
