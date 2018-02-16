@@ -40,13 +40,12 @@ defmodule FitRepeatsTrackers.Bands do
     |> Repo.insert()
   end
 
-  def add_band_member(%{"band_id" => band_id, "id" => id}) do
-    IO.puts(band_id)
-    IO.puts(id)
+  def add_band_member(band_id, id) do
     band_changeset = Repo.get(Band, band_id)
+                     |> Repo.preload(:members)
                      |> Ecto.Changeset.change()
     user = Repo.get(User, id)
-    band_with_user = Ecto.Changeset.put_assoc(band_changeset, :users, [user])
+    band_with_user = Ecto.Changeset.put_assoc(band_changeset, :members, [user])
     Repo.update(band_with_user)
   end
 
