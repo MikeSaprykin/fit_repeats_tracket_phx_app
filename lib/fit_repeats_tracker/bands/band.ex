@@ -8,6 +8,7 @@ defmodule FitRepeatsTracker.Bands.Band do
     field :avatar_url, :string
     belongs_to :user, FitRepeatsTracker.Accounts.User
     many_to_many :members, FitRepeatsTracker.Accounts.User, join_through: "users_bands"
+    has_many :band_invitations, FitRepeatsTracker.Bands.Invitation
 
     timestamps()
   end

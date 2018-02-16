@@ -14,6 +14,7 @@ defmodule FitRepeatsTracker.Accounts.User do
     field :last_name, :string
     many_to_many :bands, FitRepeatsTracker.Bands.Band, join_through: "users_bands"
     has_many :created_bands, FitRepeatsTracker.Bands.Band
+    has_many :band_invitations, FitRepeatsTracker.Bands.Invitation
 
     timestamps()
   end

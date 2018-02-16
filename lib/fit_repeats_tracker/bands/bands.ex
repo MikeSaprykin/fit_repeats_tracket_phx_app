@@ -20,9 +20,9 @@ defmodule FitRepeatsTrackers.Bands do
     |> Repo.insert
   end
 
-  def delete_band(%Band{} = band) do
-    Repo.delete(band)
-  end
+  # def delete_band(%Band{} = band) do
+  #   Repo.delete(band)
+  # end
 
   def update_band(%Band{} = band, attrs) do
     band
@@ -30,7 +30,19 @@ defmodule FitRepeatsTrackers.Bands do
     |> Repo.update()
   end
 
+  def send_invitation(band_id, user_id) do
+    user = Repo.get(User, user_id)
+    band = Repo.get(Band, band_id)
+
+    invitation = Ecto.build_assoc(user, :band_invitations)
+    band
+    |> Ecto.build_assoc(:band_invitations, Map.from_struct(invitation))
+    |> Repo.insert()
+  end
+
   def add_band_member(%{"band_id" => band_id, "id" => id}) do
+    IO.puts(band_id)
+    IO.puts(id)
     band_changeset = Repo.get(Band, band_id)
                      |> Ecto.Changeset.change()
     user = Repo.get(User, id)
