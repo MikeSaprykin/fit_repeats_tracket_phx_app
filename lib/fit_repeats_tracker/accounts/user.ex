@@ -3,6 +3,8 @@ defmodule FitRepeatsTracker.Accounts.User do
   import Ecto.Changeset
   alias FitRepeatsTracker.Accounts.User
 
+  alias Comeonin.Bcrypt
+
 
   schema "users" do
     field :username, :string
@@ -19,8 +21,15 @@ defmodule FitRepeatsTracker.Accounts.User do
 #  @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:username])
-    |> validate_required([:username])
+    |> cast(attrs, [:username, :password])
+    |> validate_required([:username, :password])
     |> unique_constraint(:username)
+    |> put_pass_hash()
   end
+
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, password: Bcrypt.hashpwsalt(password))
+  end
+  defp put_pass_hash(changeset), do: changeset
+  
 end

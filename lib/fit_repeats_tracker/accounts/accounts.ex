@@ -7,6 +7,11 @@ defmodule FitRepeatsTracker.Accounts do
   alias FitRepeatsTracker.Repo
 
   alias FitRepeatsTracker.Accounts.User
+  alias FitRepeatsTracker.Accounts.Auth
+
+  def auth_user(username, plain_text_password) do
+    Auth.authenticate_user(username, plain_text_password)
+  end
 
   @doc """
   Returns the list of users.

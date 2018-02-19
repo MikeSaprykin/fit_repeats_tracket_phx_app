@@ -1,18 +1,30 @@
 defmodule FitRepeatsTrackerWeb.Router do
   use FitRepeatsTrackerWeb, :router
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :auth do
+    plug FitRepeatsTracker.Accounts.Auth.Pipeline
   end
 
-  pipeline :auth do
-    plug Guardian.Plug.VerifyHeader, key: :authentication
-    plug Guardian.Plug.EnsureAuthenticated, key: :authentication
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
+  pipeline :api do
+    plug :accepts, ["json"]
   end
 
   scope "/api", FitRepeatsTrackerWeb do
     pipe_through :api
 
-    resources "/users", UserController
+    scope "/auth" do
+      post "/login", AuthController, :login
+    end
+
+    scope "/users" do
+      pipe_through [:auth, :ensure_auth]
+
+      resources "/", UserController
+    end
+
   end
 end

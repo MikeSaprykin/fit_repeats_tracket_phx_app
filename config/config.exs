@@ -19,8 +19,7 @@ config :fit_repeats_tracker, FitRepeatsTrackerWeb.Endpoint,
 
 config :fit_repeats_tracker, FitRepeatsTracker.Accounts.Guardian,
        issuer: "fit_repeats_tracker",
-       secret_key: "EMMT5cZNFM97v4PkgC+1t+i5udH2imyvZnWyROwA3RiZkfpkQVG87JcgCEkSSc85",
-       error_handler: FitRepeatsTracker.Accounts.AuthErrorHandler
+       secret_key: "nlkS468+pCb4AWJD2qdPZchxQnH9mfDRXlVbiolgq0eYH9TU/inQnE/MCpHtGqyv"
 
 # Configures Elixir's Logger
 config :logger, :console,
