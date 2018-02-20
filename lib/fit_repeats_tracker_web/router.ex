@@ -18,6 +18,8 @@ defmodule FitRepeatsTrackerWeb.Router do
 
     scope "/auth" do
       post "/login", AuthController, :login
+
+      post "/register", AuthController, :register
     end
 
     scope "/users" do
